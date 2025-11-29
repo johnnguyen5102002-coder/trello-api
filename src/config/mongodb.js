@@ -15,8 +15,7 @@ export const CONNECT_DB = async () => {
 };
 
 export const GET_DB = () => {
-  if (!database);
-  {
+  if (!database) {
     throw Error("you need to connect DB...");
   }
   return database;

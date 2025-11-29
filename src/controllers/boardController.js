@@ -1,11 +1,12 @@
 //import express from express;
 import { StatusCodes } from "http-status-codes";
 import ApiError from "../utils/APIerror.js";
-
-const createView = (req, res, next) => {
+import { boardServices } from "../services/boardService.js";
+const createView = async (req, res, next) => {
   try {
-    //res.status(StatusCodes.CREATED).json({ msg: "Post from Validation" });
-    throw new ApiError(StatusCodes.BAD_GATEWAY, "An error occurred");
+    const createBoard = await boardServices.createView(req.body);
+    res.status(StatusCodes.CREATED).json({ msg: "Insert thanh cong" });
+    console.log(createBoard);
   } catch (error) {
     next(error);
   }
