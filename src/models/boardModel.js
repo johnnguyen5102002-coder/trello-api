@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { ObjectId } from "mongodb";
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from "./validators.js";
 import { GET_DB } from "../config/mongodb.js";
 import { ENV } from "../config/evironment.js";
@@ -35,8 +36,21 @@ const createView = async (data) => {
   }
 };
 
+const getById = async (id) => {
+  try {
+    const data = await GET_DB()
+      .collection(BOARD_COLLECTION_NAME)
+      .findOne({
+        _id: new ObjectId(id),
+      });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 export const boardModel = {
   BOARD_COLLECTION_NAME,
   BOARD_COLLECTION_SCHEMA,
   createView,
+  getById,
 };

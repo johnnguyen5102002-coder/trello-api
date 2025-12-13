@@ -8,7 +8,9 @@ const createView = async (reqBody) => {
     };
     const createBoard = await boardModel.createView(newBoard);
 
-    return createBoard;
+    const getById = await boardModel.getById(createBoard.insertedId.toString());
+    console.log(getById);
+    return getById;
   } catch (error) {
     throw error;
   }

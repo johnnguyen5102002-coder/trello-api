@@ -19,9 +19,6 @@ CONNECT_DB()
   .then(() => console.log("Connecting DB...."))
   .then(() => APP_START())
   .then(() => console.log("Connected DB"))
-  .then(() =>
-    console.log("Connected to DB:", ENV.MONGODB_URI, ENV.MONGODB_NAME)
-  )
   .catch(() => {
     process.exit(0);
   });
